@@ -7,11 +7,11 @@ import Avatar from '../Avatar';
 import Link from 'next/link';
 
 const LK: React.FC = () => {
-  const [name, setName] = useState('John');
-  const [surname, setSurname] = useState('Doe');
+  const [name, setName] = useState('Иван');
+  const [surname, setSurname] = useState('Дмитриев');
   const [birthdate, setBirthdate] = useState(new Date('1990-01-01'));
-  const [city, setCity] = useState('New York');
-  const [country, setCountry] = useState('USA');
+  const [city, setCity] = useState('Москва');
+  const [country, setCountry] = useState('Россия');
   const [avatar, setAvatar] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [newAvatar, setNewAvatar] = useState<File | null>(null);
@@ -73,7 +73,7 @@ const LK: React.FC = () => {
           <Avatar src={avatar} alt="Avatar" onRemove={handleRemoveAvatar} onSet={handleSetAvatar} />
           {isEditing && (
             <div className="mt-4">
-              <label htmlFor="avatar" className="block text-sm font-medium text-gray-700">Change Avatar</label>
+              <label htmlFor="avatar" className="block text-sm font-medium text-gray-700">Поменять фото</label>
               <input id="avatar" type="file" accept="image/*" onChange={handleFileChange} className="mt-1" />
             </div>
           )}
@@ -81,45 +81,45 @@ const LK: React.FC = () => {
         <div>
           {isEditing ? (
             <>
-              <div className="mb-2">
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} className="mt-1 p-2 w-full rounded-md border border-gray-300" />
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Имя</label>
+                <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:border-violet-500" />
               </div>
-              <div className="mb-2">
-                <label htmlFor="surname" className="block text-sm font-medium text-gray-700">Surname</label>
-                <input id="surname" type="text" value={surname} onChange={(e) => setSurname(e.target.value)} className="mt-1 p-2 w-full rounded-md border border-gray-300" />
+              <div className="mb-4">
+                <label htmlFor="surname" className="block text-sm font-medium text-gray-700">Фамилия</label>
+                <input id="surname" type="text" value={surname} onChange={(e) => setSurname(e.target.value)} className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:border-violet-500" />
               </div>
-              <div className="mb-2">
-                <label htmlFor="birthdate" className="block text-sm font-medium text-gray-700">Date of Birth</label>
+              <div className="mb-4">
+                <label htmlFor="birthdate" className="block text-sm font-medium text-gray-700">Дата рождения</label>
                 <DatePicker
                   selected={birthdate}
                   onChange={(date: Date) => setBirthdate(date)}
-                  className="mt-1 p-2 w-full rounded-md border border-gray-300"
+                  className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:border-violet-500"
                   dateFormat="dd/MM/yyyy"
                 />
               </div>
-              <div className="mb-2">
-                <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
-                <input id="city" type="text" value={city} onChange={(e) => setCity(e.target.value)} className="mt-1 p-2 w-full rounded-md border border-gray-300" />
+              <div className="mb-4">
+                <label htmlFor="city" className="block text-sm font-medium text-gray-700">Город</label>
+                <input id="city" type="text" value={city} onChange={(e) => setCity(e.target.value)} className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:border-violet-500" />
               </div>
-              <div className="mb-2">
-                <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
-                <input id="country" type="text" value={country} onChange={(e) => setCountry(e.target.value)} className="mt-1 p-2 w-full rounded-md border border-gray-300" />
+              <div className="mb-4">
+                <label htmlFor="country" className="block text-sm font-medium text-gray-700">Страна</label>
+                <input id="country" type="text" value={country} onChange={(e) => setCountry(e.target.value)} className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:border-violet-500" />
               </div>
               <button onClick={handleSave} className="mt-4 bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded">
-                Save
+                Сохранить
               </button>
             </>
           ) : (
             <>
               <div>
-                <h2 className="text-3xl font-semibold">{name} {surname}</h2>
-                <p>Date of Birth: {format(birthdate, 'dd/MM/yyyy')}</p>
-                <p>City: {city}</p>
-                <p>Country: {country}</p>
+                <h2 className="text-4xl font-semibold">{name} {surname}</h2>
+                <p className='text-lg mt-3'>Дата рождения: {format(birthdate, 'dd/MM/yyyy')}</p>
+                <p className='text-lg mt-3'>Город: {city}</p>
+                <p className='text-lg mt-3'>Страна: {country}</p>
               </div>
               <button onClick={() => setIsEditing(true)} className="mt-4 bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded">
-                Edit
+                Редактировать
               </button>
             </>
           )}
