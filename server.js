@@ -1,5 +1,6 @@
 // Импорт модулей
 const express = require('express');
+const mongoose = require('mongoose');
 const next = require('next');
 const bodyParser = require('body-parser');
 // Импорт модуля для работы с турами
@@ -7,16 +8,43 @@ const { getAllTours } = require('./controllers/getAllTours');
 const { getAllHotels } = require('./controllers/getAllHotels');
 // Импорт модулей для аутентификации
 const { registerUser } = require('./controllers/registerUser');
-const { loginUser } = require('./controllers/loginUser');
+// const { loginUser } = require('./controllers/loginUser');
+const authRouter = require('./controllers/loginUser');
+const User = require('./models/User');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+
 
 // Создание экземпляра сервера Express
 const app = express();
 
+
+
+// const uri = "mongodb+srv://darya:dara12345@cluster0.hdpcpkv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => console.log('Connected to MongoDB'))
+//   .catch(err => console.error('Error connecting to MongoDB:', err))
+
 // Парсинг тела запроса в формате JSON
 app.use(bodyParser.json());
 
+app.use('/auth', authRouter);
+
+// Добавление нового пользователя
+// const newUser = new User({
+//   email: 'example@example.com',
+//   password: 'password123',
+//   // Другие поля пользователя...
+// });
+
+// newUser.save()
+//   .then(() => console.log('New user added:', newUser))
+//   .catch(err => console.error('Error adding new user:', err));
+
 // Роуты для аутентификации
-app.post('/login', loginUser);
+// app.post('/login', loginUser);
 app.post('/register', registerUser);
 
 // Роут для получения информации о турах
@@ -147,3 +175,9 @@ nextApp.prepare().then(() => {
 //     console.log(`Сервер запущен на порту ${port}`);
 //   });
 // });
+
+
+
+//  mongoose.connect("mongodb+srv://darya:dara12345@cluster0.hdpcpkv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", { useNewUrlParser: true, useUnifiedTopology: true })
+//    .then(() => console.log('Connected to MongoDB'))
+//    .catch(err => console.error('Error connecting to MongoDB:', err));
