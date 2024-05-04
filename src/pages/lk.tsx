@@ -5,7 +5,7 @@ const LKPage = () => {
 
     return (
         <Layout>
-            <LK firstName={''} lastName={''} middleName={''} dateOfBirth={''} city={''} onSave={function (data: LKProps): void {
+            <LK firstName={''} lastName={''} middleName={''} dateOfBirth={''} city={''} onSave={function (data: any): void {
                 throw new Error('Function not implemented.')
             }} />
         </Layout>)
