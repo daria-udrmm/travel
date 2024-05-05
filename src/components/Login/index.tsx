@@ -40,8 +40,8 @@ const Log = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-cente">
-      <div className="bg-white shadow-md rounded-lg px-12 py-10 w-full shadow-xl">
+    <div className="flex items-center justify-center w-96">
+      <div className="w-full">
         <h2 className="text-center text-xl font-semibold mb-4">Вход</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -68,11 +68,11 @@ const Log = () => {
 
           {/* {serverError && <p className="text-red-500 text-xs italic">{serverError}</p>} */}
           <div className="flex items-center justify-between">
-            <button className="bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
               Войти
             </button>
             <a className="inline-block align-baseline font-bold text-sm text-violet-500 hover:text-violet-600" href="/register">
-              Забыли пароль?
+              Регистрация
             </a>
           </div>
         </form>

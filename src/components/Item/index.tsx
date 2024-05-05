@@ -33,7 +33,7 @@ const Item: React.FC<ItemProps> = ({ item, showAsTwo, route }) => {
         <p className="mt-2 text-gray-600 min-h-20">{description}</p>
       </div>
       <div className="bottom-0 left-0 right-0 px-4 py-4 bg-white">
-        <button className="w-full px-4 py-2 bg-violet-500 text-white font-semibold rounded-md transition-colors duration-300 hover:bg-violet-600">Купить</button>
+        <button className="w-full px-4 py-2 bg-violet-500 text-white font-semibold rounded-md transition-colors duration-300 hover:bg-violet-700">Купить</button>
       </div>
     </div>
   );

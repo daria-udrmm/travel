@@ -40,7 +40,7 @@ const Header = () => {
                 <div className="hidden lg:flex lg:gap-x-12">
                     {
                         links.map((elem, id) => (
-                            <Link href={elem.url} className='px-4 py-1 text-sm font-semibold rounded-xl leading-6 text-white bg-violet-500 hover:bg-violet-600 active:bg-violet-700' key={id}>{elem.label}</Link>
+                            <Link href={elem.url} className='px-4 py-1 text-sm font-semibold rounded-xl leading-6 text-white bg-violet-500 hover:bg-violet-700 active:bg-violet-700' key={id}>{elem.label}</Link>
                         ))
                     }
                 </div>

@@ -42,7 +42,7 @@ const ToursCatalog = ({ tours: defaultTours, totalPages: defaultTotalPages }: To
       <div className={`grid ${showAsTwo ? 'grid-cols-2' : 'grid-cols-3'} gap-8 my-8`}>
         {tours?.map(elem => (<Item item={elem} showAsTwo={showAsTwo} route={routes.tour}/>))}
       </div>
-      {currentPage !== totalPages && (<button className="bg-violet-500 text-white mx-auto rounded-md flex justify-center px-4 py-2 mt-4 hover:bg-violet-600" onClick={loadMore}>
+      {currentPage !== totalPages && (<button className="bg-violet-500 text-white mx-auto rounded-md flex justify-center px-4 py-2 mt-4 hover:bg-violet-700" onClick={loadMore}>
         Загрузить еще
       </button>)}
     </>

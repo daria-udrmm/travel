@@ -1,25 +1,10 @@
 import { useState } from 'react';
 import * as yup from 'yup';
 
-const schema = yup.object().shape({
-    email: yup.string().email('Введите корректный email').required('Email обязателен для заполнения'),
-    password: yup.string().min(6, 'Пароль должен содержать минимум 6 символов').required('Пароль обязателен для заполнения'),
-    firstName: yup.string().required('Имя обязательно для заполнения'),
-    lastName: yup.string().required('Фамилия обязательна для заполнения'),
-    dateOfBirth: yup.date().required('Дата рождения обязательна для заполнения'),
-    city: yup.string().required('Родной город обязателен для заполнения'),
-    country: yup.string().required('Страна обязательна для заполнения'),
-});
-
 const RegisterPage = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-        firstName: '',
-        lastName: '',
-        dateOfBirth: '',
-        city: '',
-        country: '',
     });
     const [message, setMessage] = useState('');
 
@@ -54,103 +39,33 @@ const RegisterPage = () => {
     };
 
     return (
-    <div className="max-w-md mx-auto">
-            <div className="bg-white p-8 rounded-md shadow-md">
-                <h2 className="text-2xl font-bold mb-4">Регистрация</h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label htmlFor="email" className="block font-bold">Email:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className={`w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-violet-500`}
-                        />
-                        {/* {errors.email && <p className="text-red-500">{errors.email}</p>} */}
-                    </div>
-                    <div>
-                        <label htmlFor="password" className="block font-bold">Пароль:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            className={`w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-violet-500`}
-                        />
-                        {/* {errors.password && <p className="text-red-500">{errors.password}</p>} */}
-                    </div>
-                    <div>
-                        <label htmlFor="firstName" className="block font-bold">Имя:</label>
-                        <input
-                            type="text"
-                            id="firstName"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            className={`w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-violet-500`}
-                        />
-                        {/* {errors.firstName && <p className="text-red-500">{errors.firstName}</p>} */}
-                    </div>
-                    <div>
-                        <label htmlFor="lastName" className="block font-bold">Фамилия:</label>
-                        <input
-                            type="text"
-                            id="lastName"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            className={`w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-violet-500`}
-                        />
-                        {/* {errors.lastName && <p className="text-red-500">{errors.lastName}</p>} */}
-                    </div>
-                    <div>
-                        <label htmlFor="dateOfBirth" className="block font-bold">Дата рождения:</label>
-                        <input
-                            type="date"
-                            id="dateOfBirth"
-                            name="dateOfBirth"
-                            value={formData.dateOfBirth}
-                            onChange={handleChange}
-                            className={`w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-violet-500`}
-                        />
-                        {/* {errors.dateOfBirth && <p className="text-red-500">{errors.dateOfBirth}</p>} */}
-                    </div>
-                    <div>
-                        <label htmlFor="city" className="block font-bold">Родной город:</label>
-                        <input
-                            type="text"
-                            id="city"
-                            name="city"
-                            value={formData.city}
-                            onChange={handleChange}
-                            className={`w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-violet-500`}
-                        />
-                        {/* {errors.city && <p className="text-red-500">{errors.city}</p>} */}
-                    </div>
-                    <div>
-                        <label htmlFor="country" className="block font-bold">Страна:</label>
-                        <input
-                            type="text"
-                            id="country"
-                            name="country"
-                            value={formData.country}
-                            onChange={handleChange}
-                            className={`w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-violet-500`}
-                        />
-                        {/* {errors.country && <p className="text-red-500">{errors.country}</p>} */}
-                    </div>
-                    <button
-                        type="submit"
-                        className="bg-violet-500 text-white font-bold py-2 px-4 rounded-md hover:bg-violet-600 transition duration-300"
-                    >
-                        Зарегистрироваться
-                    </button>
-                </form>
+        <form className="w-96">
+            <h2 className="text-2xl font-bold mb-4">Регистрация</h2>
+            <div className="mb-5">
+                <label for="email" className="block text-gray-700 text-sm font-bold mb-2">Ваша почта</label>
+                <input type="email" id="email" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required />
             </div>
-        </div>
+            <div className="mb-5">
+                <label for="password" className="block text-gray-700 text-sm font-bold mb-2">Ваш пароль</label>
+                <input type="password" id="password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+            </div>
+            <div className="mb-5">
+                <label for="repeat-password" className="block text-gray-700 text-sm font-bold mb-2">Повторите пароль</label>
+                <input type="password" id="repeat-password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+            </div>
+            <div className="flex items-start mb-5">
+                <div className="flex items-center h-5">
+                    <input id="terms" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                </div>
+                <label for="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Я согласен с <a href="#" className="text-violet-500 hover:underline dark:text-violet-500"> условиями</a></label>
+            </div>
+            <button
+                type="submit"
+                className="bg-violet-500 text-white font-bold py-2 px-4 rounded-md hover:bg-violet-700 transition duration-300"
+            >
+                Зарегистрироваться
+            </button>
+        </form>
     )
 }
 
