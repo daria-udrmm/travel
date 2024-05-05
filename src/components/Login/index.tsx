@@ -40,7 +40,7 @@ const Log = () => {
   };
 
   return (
-    <div className="flex items-center justify-center w-96">
+    <div className="flex items-center justify-center max-w-96 mx-auto">
       <div className="w-full">
         <h2 className="text-center text-xl font-semibold mb-4">Вход</h2>
         <form onSubmit={handleSubmit}>

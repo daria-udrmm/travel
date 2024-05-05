@@ -39,19 +39,19 @@ const RegisterPage = () => {
     };
 
     return (
-        <form className="w-96">
+        <form className="w-96 mx-auto">
             <h2 className="text-2xl font-bold mb-4">Регистрация</h2>
             <div className="mb-5">
                 <label for="email" className="block text-gray-700 text-sm font-bold mb-2">Ваша почта</label>
-                <input type="email" id="email" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required />
+                <input type="email" id="email" className="text-lg shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:ring focus:outline-none focus:ring-violet-500" placeholder="name@flowbite.com" required />
             </div>
             <div className="mb-5">
                 <label for="password" className="block text-gray-700 text-sm font-bold mb-2">Ваш пароль</label>
-                <input type="password" id="password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+                <input type="password" id="password" className="text-lg shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:ring focus:outline-none focus:ring-violet-500" required />
             </div>
             <div className="mb-5">
                 <label for="repeat-password" className="block text-gray-700 text-sm font-bold mb-2">Повторите пароль</label>
-                <input type="password" id="repeat-password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+                <input type="password" id="repeat-password" className="text-lg shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:ring focus:outline-none focus:ring-violet-500" required />
             </div>
             <div className="flex items-start mb-5">
                 <div className="flex items-center h-5">

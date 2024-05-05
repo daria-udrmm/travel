@@ -8,7 +8,7 @@ const Layout = (props: PropsWithChildren) => {
             <div className="bg-white">
                 <Header />
             </div>
-            <div className='mx-auto max-w-7xl px-6 lg:px-8 pb-6'>
+            <div className='mx-auto max-w-7xl w-full pb-6'>
                 {props.children}
             </div>
             <Footer />
