@@ -1,32 +1,22 @@
-const { sendVerificationCode } = require('./emailSender');
+const express = require('express');
+const router = express.Router();
+const User = require('../models/User');
 
-// Простая база данных пользователей (для примера)
-const users = [
-  { id: 1, email: 'user@example.com', password: 'password' }
-];
-
-// Контроллер для регистрации нового пользователя
-const registerUser = (req, res) => {
+router.post('/users', async (req, res) => {
   const { email, password } = req.body;
 
+  try {
+    // Создание нового пользователя
+    const newUser = new User({ email, password });
 
-  // Проверка, что пользователь с таким email уже не существует
-  const existingUser = users.find(user => user.email === email);
-  if (existingUser) {
-    return res.status(400).json({ message: 'Пользователь с таким email уже зарегистрирован' });
+    // Сохранение пользователя в базе данных
+    const savedUser = await newUser.save();
+
+    res.status(201).json(savedUser); // Отправка созданного пользователя в ответ
+  } catch (error) {
+    console.error('Ошибка при добавлении нового пользователя:', error);
+    res.status(500).json({ error: 'Ошибка сервера' });
   }
+});
 
-  const verificationCode = Math.floor(Math.random()*10000);
-
-  // Отправка кода на почту
-  sendVerificationCode(email, verificationCode);
-
-  // Создание нового пользователя
-  const newUser = { id: users.length + 1, email, password };
-  users.push(newUser);
-
-  // Отправка подтверждения об успешной регистрации
-  res.status(201).json({ message: 'Пользователь успешно зарегистрирован', user: newUser });
-};
-
-module.exports = { registerUser };
+module.exports = router;

@@ -8,28 +8,23 @@ const Log = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("es", JSON.stringify({ email, password }))
     try {
       const response = await fetch('/auth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password }) // Убедитесь, что данные отправляются в формате JSON
+        body: JSON.stringify({ email, password })
       });
 
-      const data = await response.json();
-
-      console.log("response", response, "data", data)
-
       if (response.ok) {
-        console.log("ok")
+        console.log("ok", response)
         toast.success("Успешная атворизация", {
           className: 'relative text-white font-bold px-4 py-2 rounded-md shadow-md w-xl bg-green-500'
         })
 
       } else {
-        console.log("err")
+        console.log("err", response)
         toast.error("Ошибка авторизации", {
           className: 'relative text-white font-bold px-4 py-2 rounded-md shadow-md w-xl bg-red-500'
         })

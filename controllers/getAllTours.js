@@ -20,7 +20,6 @@ const tours = [
         image: 'https://avatars.dzeninfra.ru/get-zen_doc/10099939/pub_64c37a1d2b84c50c8d0e3f92_64c37a7814eaed50f1ff84e3/scale_1200',
         url: 'https://example.com/tours/rome'
     },
-    // Добавляем еще 18 туров по аналогии
     {
         id: 3,
         title: 'Отдых на пляже Бали',
