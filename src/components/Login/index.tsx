@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import CloseButton from '../CloseButton';
@@ -6,12 +7,13 @@ import CloseButton from '../CloseButton';
 const Log = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/login', {
+      const response: any = await fetch('/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -20,10 +22,19 @@ const Log = () => {
       });
 
       if (response.ok) {
-        console.log("ok", response)
         toast.success("Успешная атворизация", {
           className: 'relative text-white font-bold px-4 py-2 rounded-md shadow-md w-xl bg-green-500'
         })
+        const data = await response.json();
+        console.log(data)
+        const { token } = data;
+
+        // Сохраняем токен в localStorage или в cookies
+        localStorage.setItem('jwtToken', token);
+        localStorage.setItem('isAuth', "true");
+
+        // Переход на другую страницу после успешной авторизации
+        router.push('/lk');
 
       } else {
         console.log("err", response)

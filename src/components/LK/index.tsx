@@ -1,60 +1,86 @@
 // pages/profile.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import Avatar from '../Avatar';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const LK: React.FC = () => {
-  const [name, setName] = useState('Иван');
-  const [surname, setSurname] = useState('Дмитриев');
+const LK: React.FC = ({ data }: any) => {
+  console.log(data)
+  const [name, setName] = useState(data?.user?.name);
+  const [surname, setSurname] = useState(data?.user?.surname);
   const [birthdate, setBirthdate] = useState(new Date('1990-01-01'));
-  const [city, setCity] = useState('Москва');
+  const [city, setCity] = useState(data?.user?.city);
   const [country, setCountry] = useState('Россия');
-  const [avatar, setAvatar] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [newAvatar, setNewAvatar] = useState<File | null>(null);
 
-  const handleRemoveAvatar = () => {
-    // Logic to remove avatar
-    setAvatar('');
-  };
+  // const [user, setUser] = useState(null);
+  // const [error, setError] = useState(null);
+  const router = useRouter()
 
-  const handleSetAvatar = (newAvatarSrc: string) => {
-    // Logic to set new avatar
-    setAvatar(newAvatarSrc);
-  };
+  useEffect(() => {
+    // Загрузка информации о пользователе при загрузке компонента
+    // loadUserProfile();
+  }, []);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      setNewAvatar(files[0]);
+  // const loadUserProfile = async () => {
+  //   console.log("load")
+  //   try {
+  //     const token = localStorage.getItem('jwtToken');
+  //     const response = await fetch('/userProfile', {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${token}`
+  //       }
+  //     });
+  //     console.log(response)
+  //     if (!response.ok) {
+  //       throw new Error('Failed to load user profile');
+  //     }
+  //     const data = await response.json();
+  //     // setUser(data.user);
+  //     setName(data.user?.name);
+  //     setSurname(data.user?.surname);
+  //     setCity(data.user?.city);
+  //   } catch (error) {
+  //     setError(error.message);
+  //     router.push('/')
+
+  //   }
+  // };
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem('jwtToken');
+      const response = await fetch('/userProfile', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ name, surname, city })
+      });
+      const data = await response.json();
+      console.log('Данные пользователя успешно обновлены:', data);
+      setIsEditing(false)
+      // Дополнительные действия после успешного обновления данных пользователя
+    } catch (error) {
+      console.error('Ошибка при обновлении данных пользователя:', error);
     }
   };
 
-  const handleSave = () => {
-    // Logic to save edited data
-    setIsEditing(false);
 
-    // Upload new avatar if available
-    if (newAvatar) {
-      const formData = new FormData();
-      formData.append('avatar', newAvatar);
-
-      // Perform upload logic, for example, using fetch or axios
-      // Here is a mock implementation using fetch
-      fetch('/api/upload-avatar', {
-        method: 'POST',
-        body: formData,
-      })
-        .then(response => response.json())
-        .then(data => {
-          handleSetAvatar(data.avatarUrl);
-        })
-        .catch(error => console.error('Error uploading avatar:', error));
-    }
+  const handleLogout = async () => {
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('isAuth');
+    router.push('/auth'); // Перенаправление пользователя на страницу входа
   };
+
 
   return (
     <div className="flex justify-center">
@@ -62,22 +88,13 @@ const LK: React.FC = () => {
         <ul className='h-full border-r-2'>
           <Link href="#" className="mb-2 block text-lg text-violet-500 hover:underline hover:text-violet-700 duration-100">Покупки</Link>
           <Link href="#" className="mb-2 block text-lg text-violet-500 hover:underline hover:text-violet-700 duration-100">Избранное</Link>
-          <Link href="#" className="mb-2 block text-lg text-violet-500 hover:underline hover:text-violet-700 duration-100">Выйти</Link>
+          <div onClick={handleLogout} className="mb-2 block text-lg text-violet-500 hover:underline hover:text-violet-700 duration-100">Выйти</div>
         </ul>
         {/* <button className="mt-8 bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded">
           Log out
         </button> */}
       </div>
       <div className="w-3/5 p-4">
-        <div className="mb-4">
-          <Avatar src={avatar} alt="Avatar" onRemove={handleRemoveAvatar} onSet={handleSetAvatar} />
-          {isEditing && (
-            <div className="mt-4">
-              <label htmlFor="avatar" className="block text-sm font-medium text-gray-700">Поменять фото</label>
-              <input id="avatar" type="file" accept="image/*" onChange={handleFileChange} className="mt-1" />
-            </div>
-          )}
-        </div>
         <div>
           {isEditing ? (
             <>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import Logo from '../Logo';
 
 const links = [
@@ -21,6 +22,16 @@ const links = [
 ]
 
 const Header = () => {
+    const [isAuth, setIsAuth] = useState<boolean>()
+    const checkAuth = () => {
+        setIsAuth(Boolean(localStorage.getItem("isAuth")))
+    }
+
+    useEffect(() => {
+        checkAuth()
+    }, [])
+
+    console.log({ isAuth })
     return (
         <header className="bg-violet-100">
             <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -46,7 +57,11 @@ const Header = () => {
                     }
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <Link href="/auth" className="text-sm font-semibold leading-6 text-gray-900">Войти{" "}<span aria-hidden="true">&rarr;</span></Link>
+                    {isAuth ?
+                        <Link href="/lk" className="text-sm font-semibold leading-6 text-gray-900">Личный кабинет</Link>
+                        :
+                        <Link href="/auth" className="text-sm font-semibold leading-6 text-gray-900">Войти{" "}<span aria-hidden="true">&rarr;</span></Link>
+                    }
                 </div>
             </nav>
         </header>

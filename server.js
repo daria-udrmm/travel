@@ -4,10 +4,13 @@ const next = require('next');
 const bodyParser = require('body-parser');
 const { getAllTours } = require('./controllers/getAllTours');
 const { getAllHotels } = require('./controllers/getAllHotels');
+const getUsers = require('./controllers/getUsers');
+const updateUsers = require('./controllers/updateUser');
 // const authRouter = require('./controllers/loginUser');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const registerUser = require('./controllers/registerUser');
+const logoutRouter = require('./controllers/logout');
 const User = require('./models/User');
 
 const app = express();
@@ -42,7 +45,7 @@ app.post('/login', async (req, res) => {
   try {
     // Находим пользователя в базе данных по его имени пользователя
     const user = await User.findOne({ email });
-    console.error('user', user);
+    // console.error('user', user);
 
     // Если пользователь не найден, возвращаем ошибку
     if (!user) {
@@ -71,6 +74,9 @@ app.post('/users', registerUser);
 
 app.get('/allTours', getAllTours);
 app.get('/allHotels', getAllHotels);
+app.use('', getUsers);
+app.use('', updateUsers);
+app.use('', logoutRouter);
 
 // Создание экземпляра приложения Next.js
 const dev = process.env.NODE_ENV !== 'production';

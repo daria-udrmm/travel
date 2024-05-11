@@ -50,7 +50,7 @@ const RegisterPage = () => {
     return (
         <div>
             <div>
-                <form className="w-[500px] mx-auto" onSubmit={handleSubmit}>
+                <form className="w-[500px] mx-auto mt-24" onSubmit={handleSubmit}>
                     <h2 className="text-left text-2xl font-semibold mb-7">Регистрация</h2>
                     <div className="mb-5">
                         <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Ваша почта</label>

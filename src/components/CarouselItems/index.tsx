@@ -47,7 +47,7 @@ const tours = [
 const CarouselItems = () => {
     return (
         <div className="grid grid-cols-4 gap-8 my-8 mt-[-70px]">
-            {tours?.map(elem => (<Item item={elem} />))}
+            {tours?.map((elem, id) => (<Item item={elem} key={id} />))}
         </div>
     )
 }
