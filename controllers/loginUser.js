@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Сверяем хэшированный пароль из базы данных с введенным паролем
-    const isPasswordValid = await bcrypt.compare(email, user.password);
+    const isPasswordValid = await bcrypt.compare(user.password, password);
 
     // Если пароль не совпадает, возвращаем ошибку
     if (!isPasswordValid) {
