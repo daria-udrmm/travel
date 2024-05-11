@@ -17,10 +17,10 @@ const Item: React.FC<ItemProps> = ({ item, showAsTwo, route }) => {
   };
 
   return (
-    <div className="relative bg-white border rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-200 hover:z-10 hover:cursor-pointer">
+    <div className="relative rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-200 hover:z-10 hover:cursor-pointer">
       <div className="relative">
         <Link href={`${route}/${id}`}>
-           <img className={`w-full h-64 bg-gray-300 flex items-center justify-center ${showAsTwo ? 'object-cover' : ''}`} src={image} alt={title} />
+          <img className={`w-full h-64 bg-gray-300 flex items-center justify-center ${showAsTwo ? 'object-cover' : ''}`} src={image} alt={title} />
         </Link>
         <button className="absolute top-2 right-2 text-gray-800" onClick={toggleFavorite}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill={isFavorite ? "red" : "none"} stroke={isFavorite ? "red" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-heart h-8 w-8">

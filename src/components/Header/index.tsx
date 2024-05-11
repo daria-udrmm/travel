@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Logo from '../Logo';
 
 const links = [
     {
@@ -21,12 +22,12 @@ const links = [
 
 const Header = () => {
     return (
-        <header>
+        <header className="bg-violet-100">
             <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
-                    <Link href="/" className="-m-1.5 p-1.5">
-                        <span className="sr-only">Your Company</span>
-                        <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                    <Link href="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                        <Logo />
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TravelEver</span>
                     </Link>
                 </div>
                 <div className="flex lg:hidden">

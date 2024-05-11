@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import CloseButton from '../CloseButton';
 
 const Log = () => {
   const [email, setEmail] = useState('');
@@ -35,25 +37,21 @@ const Log = () => {
   };
 
   return (
-    <div className="flex items-center justify-center max-w-96 mx-auto">
+    <div className="flex items-center justify-center max-w-[500px] mx-auto">
       <div className="w-full">
-        <h2 className="text-center text-xl font-semibold mb-4">Вход</h2>
+        <h2 className="text-left text-2xl font-semibold mb-7">Авторизация</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
-            </label>
+          <div className="mb-5">
             <input
-              className={`text-lg shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:ring focus:outline-none focus:ring-violet-500`}
+              className={`text-lg appearance-none border font-light rounded-lg w-full py-2 px-3 text-gray-700 leading-tight  focus:ring focus:outline-none focus:ring-violet-500`}
+              placeholder="Email"
               type="email" value={email} onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Пароль
-            </label>
             <input
-              className={`text-lg shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring focus:outline-none focus:ring-violet-500`}
+              className={`text-lg appearance-none border font-light rounded-lg w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring focus:outline-none focus:ring-violet-500`}
+              placeholder="Password"
               type="password" value={password} onChange={(e) => setPassword(e.target.value)}
             // {...register('password', { required: true })}
             //   ref={register}
@@ -62,13 +60,13 @@ const Log = () => {
           </div>
 
           {/* {serverError && <p className="text-red-500 text-xs italic">{serverError}</p>} */}
-          <div className="flex items-center justify-between">
-            <button className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              Войти
+          <div className="flex items-center justify-between border-2 border-violet-500 rounded-[52px] overflow-hidden">
+            <button className="text-lg bg-violet-500 font-bold text-center w-1/2 text-white font-bold py-3 px-4 focus:outline-none focus:shadow-outline" type="submit">
+              Вход
             </button>
-            <a className="inline-block align-baseline font-bold text-sm text-violet-500 hover:text-violet-600" href="/register">
+            <Link className="text-lg w-1/2 text-center font-medium text-violet-500 font-bold py-3 px-4 focus:outline-none focus:shadow-outline" href="/register">
               Регистрация
-            </a>
+            </Link>
           </div>
         </form>
       </div>
@@ -90,18 +88,3 @@ const Log = () => {
 }
 
 export default Log;
-
-
-function CloseButton({ closeToast, type, ariaLabel }: any) {
-  return (
-    <button
-      onClick={e => {
-        e.stopPropagation();
-        closeToast(e);
-      }}
-      type="button"
-      aria-label={ariaLabel}
-      className="absolute top-0 right-0 mt-1 mr-2"
-    >X</button>
-  );
-}
